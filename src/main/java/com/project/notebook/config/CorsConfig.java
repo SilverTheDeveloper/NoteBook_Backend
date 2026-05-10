@@ -7,10 +7,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * CorsConfig — updated to allow the Authorization header.
- *
+ * <p>
  * The JWT token is sent from React as:
- *   Authorization: Bearer <token>
- *
+ * Authorization: Bearer <token>
+ * <p>
  * Without "Authorization" in allowedHeaders, the browser will block it.
  */
 @Configuration
@@ -22,7 +22,9 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOrigins("http://localhost:5173",
+                                "https://note-book-frontend-blush.vercel.app"
+                                )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("Content-Type", "Authorization")
                         .allowCredentials(true);
